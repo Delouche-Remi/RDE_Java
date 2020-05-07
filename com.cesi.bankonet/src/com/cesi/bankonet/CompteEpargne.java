@@ -4,29 +4,14 @@ package com.cesi.bankonet;
  *
  * @author Delouche Rémi
  */
-class CompteEpargne {
-    private String numero;
-    private String intitule;
-    private double solde;
+public class CompteEpargne extends Compte{
     private double tauxInteret;
-    private static int nbComptesEpargne = 0;
     
     public CompteEpargne(String numero, String intitule, double solde, double tauxInteret) {
-        this.numero = numero;
-        this.intitule = intitule;
-        this.solde = solde;
+        super.numero = numero;
+        super.intitule = intitule;
+        super.solde = solde;
         this.tauxInteret = tauxInteret;
-        this.nbComptesEpargne++;
-    }
-    
-    public void Debiter(double somme) {
-        if (somme > 0) {
-            if (this.solde >= somme) {
-                this.solde -= somme;}
-            else {
-                System.out.println("Operation impossible.");}}
-        else {
-            System.out.println("La somme saisie n'est pas valide.");}
     }
     
     public void Crediter(double somme) {
@@ -35,26 +20,6 @@ class CompteEpargne {
         else {
             System.out.println("La somme saisie n'est pas valide.");}
     }
-    
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getIntitule() {
-        return intitule;
-    }
-
-    public void setIntitule(String intitule) {
-        this.intitule = intitule;
-    }
-
-    public double getSolde() {
-        return solde;
-    }
 
     public double tauxInteret() {
         return tauxInteret;
@@ -62,10 +27,6 @@ class CompteEpargne {
 
     public void setTauxInteret(double tauxInteret) {
         this.tauxInteret = tauxInteret;
-    }
-
-    public static int getNbComptesEpargne() {
-        return nbComptesEpargne;
     }
 
     @Override

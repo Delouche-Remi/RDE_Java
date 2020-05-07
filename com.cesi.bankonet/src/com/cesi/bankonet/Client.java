@@ -4,12 +4,15 @@ package com.cesi.bankonet;
  *
  * @author Delouche Rémi
  */
-class Client {
+public class Client {
     private String identifiant;
     private String nom;
     private String prenom;
     
-    public Client(String identifiant, String nom, String prenom, CompteCourant compteCourant, CompteEpargne compteEpargne) {
+    private CompteCourant compteCourant;
+    private CompteEpargne compteEpargne;
+            
+    public Client(String identifiant, String nom, String prenom) {
         this.identifiant = identifiant;
         this.nom = nom;
         this.prenom = prenom;
@@ -38,13 +41,40 @@ class Client {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+    
+    public CompteCourant getCompteCourant() {
+        return compteCourant;
+    }
+    
+    public void setCompteCourant(CompteCourant compteCourant) {
+        this.compteCourant = compteCourant;
+    }
+    
+    public CompteEpargne getCompteEpargne() {
+        return compteEpargne;
+    }
+    
+    public void setCompteEpargne(CompteEpargne compteEpargne) {
+        this.compteEpargne = compteEpargne;
+    }
 
     @Override
     public String toString() {
-        return "CompteEpargne{" + "numero=" + numero + ", intitule=" + intitule + ", solde=" + solde + ", tauxInteret=" + tauxInteret + '}';
+        return "Client{" + "identifiant=" + identifiant + ", nom=" + nom + ", prenom=" + prenom + ", compteCourant=" + compteCourant + ", compteEpargne=" + compteEpargne + '}';
     }
     
+    
+    
     public double calculerAvoirGlobal() {
-        return tauxInteret*solde;
+        double avoirGlobal = 0;
+        if (this.compteCourant != null && this.compteEpargne == null) {
+            avoirGlobal = this.compteCourant.getSolde();}
+        else if(this.compteCourant == null && this.compteEpargne != null) {
+            avoirGlobal = this.compteEpargne.getSolde();}
+        else if(this.compteCourant != null && this.compteEpargne != null) {
+            avoirGlobal = this.compteCourant.solde + this.compteEpargne.solde;}
+        else {
+            System.out.println("Aucun avoir renseigé pour ce compte.");}
+        return avoirGlobal;
     }
 }

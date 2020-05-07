@@ -4,19 +4,14 @@ package com.cesi.bankonet;
  *
  * @author Delouche Rémi
  */
-class CompteCourant {
-    private String numero;
-    private String intitule;
-    private double solde;
+public class CompteCourant extends Compte{
     private double montantDecouvertAutorise;
-    private static int nbComptesCourants = 0;
     
     public CompteCourant(String numero, String intitule, double solde, double montantDecouvertAutorise) {
-        this.numero = numero;
-        this.intitule = intitule;
-        this.solde = solde;
+        super.numero = numero;
+        super.intitule = intitule;
+        super.solde = solde;
         this.montantDecouvertAutorise = montantDecouvertAutorise;
-        this.nbComptesCourants++;
     }
     
     public void Debiter(double somme) {
@@ -36,36 +31,12 @@ class CompteCourant {
             System.out.println("La somme saisie n'est pas valide.");}
     }
     
-     public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getIntitule() {
-        return intitule;
-    }
-
-    public void setIntitule(String intitule) {
-        this.intitule = intitule;
-    }
-
-    public double getSolde() {
-        return solde;
-    }
-
     public double getMontantDecouvertAutorise() {
         return montantDecouvertAutorise;
     }
 
     public void setMontantDecouvertAutorise(double montantDecouvertAutorise) {
         this.montantDecouvertAutorise = montantDecouvertAutorise;
-    }
-
-    public static int getNbComptesCourants() {
-        return nbComptesCourants;
     }
 
     @Override
