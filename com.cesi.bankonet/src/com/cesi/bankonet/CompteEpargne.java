@@ -4,24 +4,24 @@ package com.cesi.bankonet;
  *
  * @author Delouche Rémi
  */
-class CompteCourant {
+class CompteEpargne {
     private String numero;
     private String intitule;
     private double solde;
-    private double montantDecouvertAutorise;
-    private static int nbComptesCourants = 0;
+    private double tauxInteret;
+    private static int nbComptesEpargne = 0;
     
-    public CompteCourant(String numero, String intitule, double solde, double montantDecouvertAutorise) {
+    public CompteEpargne(String numero, String intitule, double solde, double tauxInteret) {
         this.numero = numero;
         this.intitule = intitule;
         this.solde = solde;
-        this.montantDecouvertAutorise = montantDecouvertAutorise;
-        this.nbComptesCourants++;
+        this.tauxInteret = tauxInteret;
+        this.nbComptesEpargne++;
     }
     
     public void Debiter(double somme) {
         if (somme > 0) {
-            if (this.montantDecouvertAutorise + this.solde >= somme) {
+            if (this.solde >= somme) {
                 this.solde -= somme;}
             else {
                 System.out.println("Operation impossible.");}}
@@ -36,7 +36,7 @@ class CompteCourant {
             System.out.println("La somme saisie n'est pas valide.");}
     }
     
-     public String getNumero() {
+    public String getNumero() {
         return numero;
     }
 
@@ -56,20 +56,24 @@ class CompteCourant {
         return solde;
     }
 
-    public double getMontantDecouvertAutorise() {
-        return montantDecouvertAutorise;
+    public double tauxInteret() {
+        return tauxInteret;
     }
 
-    public void setMontantDecouvertAutorise(double montantDecouvertAutorise) {
-        this.montantDecouvertAutorise = montantDecouvertAutorise;
+    public void setTauxInteret(double tauxInteret) {
+        this.tauxInteret = tauxInteret;
     }
 
-    public static int getNbComptesCourants() {
-        return nbComptesCourants;
+    public static int getNbComptesEpargne() {
+        return nbComptesEpargne;
     }
 
     @Override
     public String toString() {
-        return "CompteCourant{" + "numero=" + numero + ", intitule=" + intitule + ", solde=" + solde + ", montantDecouvertAutorise=" + montantDecouvertAutorise + '}';
+        return "CompteEpargne{" + "numero=" + numero + ", intitule=" + intitule + ", solde=" + solde + ", tauxInteret=" + tauxInteret + '}';
+    }
+    
+    public double calculerInterets() {
+        return (tauxInteret*solde)/100;
     }
 }
